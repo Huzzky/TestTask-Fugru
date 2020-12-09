@@ -1,13 +1,33 @@
 import React, { memo, useState, useEffect } from 'react'
 
 export const TableSmallDataUser = memo((props) => {
-  console.log(props)
-  const logSortBtn = (event) => {
-    console.log(event.target.innerHTML)
+  const [charActiveFieldSmallTable, setCharActiveFieldSmallTable] = useState('')
+  const [activeFieldSmallTable, setActiveFieldSmallTable] = useState('')
+  const choicePersonUserInSmallTable = (event) => {
+    console.log(event.currentTarget.id)
+  }
+  const choiceSortFieldInSmallTable = (event) => {
+    if (charActiveFieldSmallTable === '' && activeFieldSmallTable === '') {
+      setCharActiveFieldSmallTable(String.fromCharCode(9660))
+      setActiveFieldSmallTable(event.target.id)
+    } else if (
+      charActiveFieldSmallTable === String.fromCharCode(9660) &&
+      activeFieldSmallTable === event.target.id
+    ) {
+      setCharActiveFieldSmallTable(String.fromCharCode(9650))
+    } else if (
+      charActiveFieldSmallTable === String.fromCharCode(9650) &&
+      activeFieldSmallTable === event.target.id
+    ) {
+      setCharActiveFieldSmallTable(String.fromCharCode(9660))
+    } else if (activeFieldSmallTable !== event.target.id) {
+      setCharActiveFieldSmallTable(String.fromCharCode(9660))
+      setActiveFieldSmallTable(event.target.id)
+    }
   }
   let tableSmall32 = props.dataUserSmall.map((index, key) => {
     return (
-      <tr key={key}>
+      <tr onClick={choicePersonUserInSmallTable} id={index.id} key={key}>
         <td>{index.id}</td>
         <td>{index.firstName}</td>
         <td>{index.lastName}</td>
@@ -19,15 +39,21 @@ export const TableSmallDataUser = memo((props) => {
 
   let upperMainTableSmall32 = Object.keys(props.dataUserSmall[0]).map(
     (index, key) => {
-      console.log(index)
       if (index !== 'address' && index !== 'description') {
         return (
-          <td onClick={logSortBtn} key={key}>
-            {index}
+          <td
+            id={'SORT_' + index.toUpperCase()}
+            onClick={choiceSortFieldInSmallTable}
+            key={key}
+          >
+            {index}{' '}
+            {activeFieldSmallTable === 'SORT_' + index.toUpperCase()
+              ? charActiveFieldSmallTable
+              : ''}
           </td>
         )
       } else {
-        return <td></td>
+        return <td key={key}></td>
       }
     },
   )
