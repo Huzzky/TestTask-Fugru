@@ -10,7 +10,6 @@ import logger from 'redux-logger'
 import { Provider } from 'react-redux'
 
 const store = createStore(allReducers, applyMiddleware(thunk, logger))
-console.log(store, 'this')
 ReactDOM.render(
   <Provider store={store}>
     <App />

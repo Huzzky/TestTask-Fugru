@@ -1,7 +1,7 @@
-import { REQUEST_SDATA, SUCCES_SDATA } from '../const'
+import { ERROR_SDATA, REQUEST_SDATA, SUCCES_SDATA } from '../const'
 
 const initialState = {
-  data: ['12314'],
+  data: [],
   isFetchingSmallData: false,
 }
 
@@ -18,7 +18,33 @@ export function smallDataTableUser(state = initialState, action) {
         data: action.data,
         isFetchingSmallData: false,
       }
+    case ERROR_SDATA:
+      return {
+        ...state,
+        data: [
+          {
+            id: null,
+            email: null,
+            firstName: null,
+            lastName: null,
+            phone: null,
+            address: null,
+          },
+        ],
+        isFetchingSmallData: false,
+      }
     default:
-      return state
+      return {
+        data: [
+          {
+            id: null,
+            email: null,
+            firstName: null,
+            lastName: null,
+            phone: null,
+            address: null,
+          },
+        ],
+      }
   }
 }

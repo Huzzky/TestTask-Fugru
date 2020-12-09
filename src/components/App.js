@@ -19,6 +19,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { getSmallDataTableUser, smallDataTableUser } = this.props
     return (
       <div className="App">

@@ -1,6 +1,7 @@
 import React, { memo, useState, useEffect } from 'react'
 
 export const TableSmallDataUser = memo((props) => {
+  console.log(props)
   const logSortBtn = (event) => {
     console.log(event.target.innerHTML)
   }
@@ -18,6 +19,7 @@ export const TableSmallDataUser = memo((props) => {
 
   let upperMainTableSmall32 = Object.keys(props.dataUserSmall[0]).map(
     (index, key) => {
+      console.log(index)
       if (index !== 'address' && index !== 'description') {
         return (
           <td onClick={logSortBtn} key={key}>
@@ -25,15 +27,17 @@ export const TableSmallDataUser = memo((props) => {
           </td>
         )
       } else {
-        return null
+        return <td></td>
       }
     },
   )
   return (
     <React.Fragment>
       <table>
-        <tr>{upperMainTableSmall32}</tr>
-        {tableSmall32}
+        <thead>
+          <tr>{upperMainTableSmall32}</tr>
+        </thead>
+        <tbody>{tableSmall32}</tbody>
       </table>
     </React.Fragment>
   )

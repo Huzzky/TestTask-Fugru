@@ -15,7 +15,7 @@ export const SmallDataTablePage = memo((props) => {
   } else if (!props.smallDataTableUser.isFetchingSmallData) {
     if (props.smallDataTableUser.data.length < 2) {
       props.getSmallDataTableUser()
-      return <h1>Подзагрузка</h1>
+      return <h1>123</h1>
     } else if (props.smallDataTableUser.data.length > 2) {
       return (
         <div>
