@@ -9,25 +9,23 @@ const SmallDataTablePage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [null])
 
-  if (props.smallDataTableUser.isFetchingSmallData) {
-    return <h1>Загрузка</h1>
-  } else if (!props.smallDataTableUser.isFetchingSmallData) {
-    return (
-      <div>
-        <TableSmallDataUser />
-      </div>
-    )
-  }
+  return props.smallDataTableUser.isFetchingSmallData ? (
+    <h1>Загрузка</h1>
+  ) : (
+    <div>
+      <TableSmallDataUser />
+    </div>
+  )
 }
 
 const mapStateToProps = (store) => {
   return {
-    smallDataTableUser: store.smallDataTableUser,
+    smallDataTableUser: store.smallDataTableUserReducer,
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getSmallDataTableUser: () => dispatch(getDataFromApi(32)),
+  getSmallDataTableUser: () => dispatch(getDataFromApi(4)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SmallDataTablePage)

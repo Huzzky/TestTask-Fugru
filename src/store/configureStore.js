@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { smallDataTableUser } from './reducers/smallDataTableUser'
+import { smallDataTableUserReducer } from './reducers/smallDataTableUserReducer'
 
 export const allReducers = combineReducers({
-  smallDataTableUser,
+  smallDataTableUserReducer,
 })

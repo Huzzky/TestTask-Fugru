@@ -1,16 +1,13 @@
-export const SUCCESS_SDATA = 'SUCCESS_SDATA'
-export const REQUEST_SDATA = 'REQUEST_SDATA'
-export const ERROR_SDATA = 'ERROR_SDATA'
-export const SUCCES_BDATA = 'SUCCES_BDATA'
-export const REQUEST_BDATA = 'REQUEST_BDATA'
-export const ERROR_BDATA = 'ERROR_BDATA'
-export const SORT_ID_UP = 'SORT_ID_UP'
-export const SORT_ID_DOWN = 'SORT_ID_DOWN'
-export const SORT_FIRSTNAME_UP = 'SORT_FIRSTNAME_UP'
-export const SORT_FIRSTNAME_DOWN = 'SORT_FIRSTNAME_DOWN'
-export const SORT_LASTNAME_UP = 'SORT_LASTNAME_UP'
-export const SORT_LASTNAME_DOWN = 'SORT_LASTNAME_DOWN'
-export const SORT_EMAIL_UP = 'SORT_EMAIL_UP'
-export const SORT_EMAIL_DOWN = 'SORT_EMAIL_DOWN'
-export const SORT_PHONE_UP = 'SORT_PHONE_UP'
-export const SORT_PHONE_DOWN = 'SORT_PHONE_DOWN'
+export const SUCCESS_DATA = 'SUCCESS_DATA'
+export const REQUEST_DATA = 'REQUEST_DATA'
+export const ERROR_DATA = 'ERROR_DATA'
+
+export const SORT_TABLE = 'SORT_TABLE'
+
+export const tableSortingFields = {
+  id: 'Id',
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  email: 'Email',
+  phone: 'Phone',
+}
