@@ -4,7 +4,9 @@ export const TableSmallDataUser = (props) => {
   const [charActiveFieldSmallTable, setCharActiveFieldSmallTable] = useState('')
   const [activeFieldSmallTable, setActiveFieldSmallTable] = useState('')
 
-  useEffect(() => {}, [props.dataUserSmall])
+  useEffect(() => {
+    console.log(props.dataUserSmall, '1234')
+  }, [props.dataUserSmall])
 
   const choicePersonUserInSmallTable = (event) => {
     console.log(event.currentTarget.id)
@@ -32,8 +34,6 @@ export const TableSmallDataUser = (props) => {
     }
   }
 
-  //BUG При переключении между окнами данных возвращает {data: [{}]} вместо [{}]
-  console.log(props.dataUserSmall, 'data adas')
   let tableSmall32 = props.dataUserSmall.map((index, key) => {
     return (
       <tr onClick={choicePersonUserInSmallTable} id={index.id} key={key}>
@@ -45,7 +45,6 @@ export const TableSmallDataUser = (props) => {
       </tr>
     )
   })
-
   const upperMainTableSmall32 = Object.keys(props.dataUserSmall[0]).map(
     (index, key) => {
       if (index !== 'address' && index !== 'description') {

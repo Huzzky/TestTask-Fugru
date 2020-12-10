@@ -1,4 +1,4 @@
-import { REQUEST_SDATA, SUCCES_SDATA, ERROR_SDATA } from '../../const'
+import { REQUEST_SDATA, SUCCESS_SDATA, ERROR_SDATA } from '../../const'
 
 export function getSmallDataTableUser() {
   return (dispatch) => {
@@ -14,7 +14,7 @@ export function getSmallDataTableUser() {
       )
       .then((response) => {
         dispatch({
-          type: SUCCES_SDATA,
+          type: SUCCESS_SDATA,
           data: response.data,
         })
       })

@@ -12,13 +12,6 @@ import {
 } from 'react-router-dom'
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      choice: '',
-    }
-  }
-
   render() {
     console.log(this.props)
     const {

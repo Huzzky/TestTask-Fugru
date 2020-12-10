@@ -1,4 +1,4 @@
-export const SUCCES_SDATA = 'SUCCES_SDATA'
+export const SUCCESS_SDATA = 'SUCCESS_SDATA'
 export const REQUEST_SDATA = 'REQUEST_SDATA'
 export const ERROR_SDATA = 'ERROR_SDATA'
 export const SUCCES_BDATA = 'SUCCES_BDATA'

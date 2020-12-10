@@ -1,7 +1,7 @@
 import {
   ERROR_SDATA,
   REQUEST_SDATA,
-  SUCCES_SDATA,
+  SUCCESS_SDATA,
   SORT_ID_UP,
   SORT_ID_DOWN,
   SORT_FIRSTNAME_UP,
@@ -19,7 +19,7 @@ export function smallDataTableUser(state = initialState, action) {
         ...state,
         isFetchingSmallData: true,
       }
-    case SUCCES_SDATA:
+    case SUCCESS_SDATA:
       console.log(action.data, 'this')
       return {
         ...state,
@@ -81,12 +81,12 @@ export function smallDataTableUser(state = initialState, action) {
         ...state,
         data: [
           {
-            id: null,
-            email: null,
-            firstName: null,
-            lastName: null,
-            phone: null,
-            address: null,
+            id: 'null',
+            email: 'null',
+            firstName: 'null',
+            lastName: 'null',
+            phone: 'null',
+            address: 'null',
           },
         ],
         isFetchingSmallData: false,
@@ -95,12 +95,12 @@ export function smallDataTableUser(state = initialState, action) {
       return {
         data: [
           {
-            id: null,
-            email: null,
-            firstName: null,
-            lastName: null,
-            phone: null,
-            address: null,
+            id: 'null',
+            email: 'null',
+            firstName: 'null',
+            lastName: 'null',
+            phone: 'null',
+            address: 'null',
           },
         ],
       }
