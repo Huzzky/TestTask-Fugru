@@ -1,7 +1,7 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TableSmallDataUser } from './TableSmallDataUser'
 
-export const SmallDataTablePage = memo((props) => {
+export const SmallDataTablePage = (props) => {
   const [dataUser, setDataUser] = useState(props.smallDataTableUser)
 
   useEffect(() => {
@@ -15,13 +15,16 @@ export const SmallDataTablePage = memo((props) => {
   } else if (!props.smallDataTableUser.isFetchingSmallData) {
     if (props.smallDataTableUser.data.length < 2) {
       props.getSmallDataTableUser()
-      return <h1>123</h1>
+      return <React.Fragment />
     } else if (props.smallDataTableUser.data.length > 2) {
       return (
         <div>
-          <TableSmallDataUser dataUserSmall={dataUser} />
+          <TableSmallDataUser
+            SortingSmallData={props.SortingSmallData}
+            dataUserSmall={dataUser}
+          />
         </div>
       )
     }
   }
-})
+}

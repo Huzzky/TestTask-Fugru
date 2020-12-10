@@ -1,4 +1,4 @@
-import { REQUEST_BDATA, SUCCES_BDATA } from '../const'
+import { REQUEST_BDATA, SUCCES_BDATA } from '../../const'
 
 const initialState = {
   bigData: [],

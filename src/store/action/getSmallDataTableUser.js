@@ -1,4 +1,4 @@
-import { REQUEST_SDATA, SUCCES_SDATA, ERROR_SDATA } from '../const'
+import { REQUEST_SDATA, SUCCES_SDATA, ERROR_SDATA } from '../../const'
 
 export function getSmallDataTableUser() {
   return (dispatch) => {
@@ -18,7 +18,7 @@ export function getSmallDataTableUser() {
           data: response.data,
         })
       })
-      .catch(function (error) {
+      .catch((_) => {
         dispatch({
           type: ERROR_SDATA,
         })

@@ -1,8 +1,11 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export const TableSmallDataUser = memo((props) => {
+export const TableSmallDataUser = (props) => {
   const [charActiveFieldSmallTable, setCharActiveFieldSmallTable] = useState('')
   const [activeFieldSmallTable, setActiveFieldSmallTable] = useState('')
+
+  useEffect(() => {}, [props.dataUserSmall])
+
   const choicePersonUserInSmallTable = (event) => {
     console.log(event.currentTarget.id)
   }
@@ -10,21 +13,27 @@ export const TableSmallDataUser = memo((props) => {
     if (charActiveFieldSmallTable === '' && activeFieldSmallTable === '') {
       setCharActiveFieldSmallTable(String.fromCharCode(9660))
       setActiveFieldSmallTable(event.target.id)
+      props.SortingSmallData(props.dataUserSmall, event.target.id + '_UP')
     } else if (
       charActiveFieldSmallTable === String.fromCharCode(9660) &&
       activeFieldSmallTable === event.target.id
     ) {
       setCharActiveFieldSmallTable(String.fromCharCode(9650))
+      props.SortingSmallData(props.dataUserSmall, event.target.id + '_DOWN')
     } else if (
       charActiveFieldSmallTable === String.fromCharCode(9650) &&
       activeFieldSmallTable === event.target.id
     ) {
       setCharActiveFieldSmallTable(String.fromCharCode(9660))
+      props.SortingSmallData(props.dataUserSmall, event.target.id + '_UP')
     } else if (activeFieldSmallTable !== event.target.id) {
       setCharActiveFieldSmallTable(String.fromCharCode(9660))
       setActiveFieldSmallTable(event.target.id)
     }
   }
+
+  //BUG При переключении между окнами данных возвращает {data: [{}]} вместо [{}]
+  console.log(props.dataUserSmall, 'data adas')
   let tableSmall32 = props.dataUserSmall.map((index, key) => {
     return (
       <tr onClick={choicePersonUserInSmallTable} id={index.id} key={key}>
@@ -37,7 +46,7 @@ export const TableSmallDataUser = memo((props) => {
     )
   })
 
-  let upperMainTableSmall32 = Object.keys(props.dataUserSmall[0]).map(
+  const upperMainTableSmall32 = Object.keys(props.dataUserSmall[0]).map(
     (index, key) => {
       if (index !== 'address' && index !== 'description') {
         return (
@@ -67,4 +76,4 @@ export const TableSmallDataUser = memo((props) => {
       </table>
     </React.Fragment>
   )
-})
+}

@@ -1,4 +1,4 @@
-import { REQUEST_BDATA, SUCCES_BDATA } from '../const'
+import { REQUEST_BDATA, SUCCES_BDATA } from '../../const'
 
 export function getSmallData() {
   return (dispatch) => {
