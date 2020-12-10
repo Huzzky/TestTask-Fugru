@@ -3,12 +3,13 @@ import { TableSmallDataUser } from './TableSmallDataUser'
 
 export const SmallDataTablePage = (props) => {
   const [dataUser, setDataUser] = useState(props.smallDataTableUser.data)
-  console.log(dataUser)
+  // console.log(props.smallDataTableUser.isFetchingSmallData)
   useEffect(() => {
+    props.getSmallDataTableUser()
+
     setDataUser(props.smallDataTableUser.data)
-    // console.log(props.smallDataTableUser, dataUser)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.smallDataTableUser.data])
+  }, [props.smallDataTableUser.isLoaded])
+  // console.log(dataUser, 'dataUser')
 
   if (props.smallDataTableUser.isFetchingSmallData) {
     return <h1>Загрузка</h1>
@@ -16,6 +17,7 @@ export const SmallDataTablePage = (props) => {
     return (
       <div>
         <TableSmallDataUser
+          getSmallDataTableUser={props.getSmallDataTableUser}
           SortingSmallData={props.SortingSmallData}
           dataUserSmall={dataUser}
         />

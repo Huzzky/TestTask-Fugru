@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react'
 export const TableSmallDataUser = (props) => {
   const [charActiveFieldSmallTable, setCharActiveFieldSmallTable] = useState('')
   const [activeFieldSmallTable, setActiveFieldSmallTable] = useState('')
-
   useEffect(() => {
-    console.log(props.dataUserSmall, '1234')
+    // console.log(props.dataUserSmall, '1234')
   }, [props.dataUserSmall])
 
   const choicePersonUserInSmallTable = (event) => {

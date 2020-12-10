@@ -10,6 +10,7 @@ import {
 const initialState = {
   data: [],
   isFetchingSmallData: false,
+  isLoaded: false,
 }
 
 export function smallDataTableUser(state = initialState, action) {
@@ -20,11 +21,11 @@ export function smallDataTableUser(state = initialState, action) {
         isFetchingSmallData: true,
       }
     case SUCCESS_SDATA:
-      console.log(action.data, 'this')
       return {
         ...state,
         data: action.data,
         isFetchingSmallData: false,
+        isLoaded: true,
       }
     case SORT_ID_UP:
       let dataSortUpID = action.data
