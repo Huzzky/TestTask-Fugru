@@ -3,12 +3,10 @@ import { connect } from 'react-redux'
 import { tableSortingFields } from '../../const'
 import { sortDataTable } from '../../store/action/getDataFromApi'
 import BlockDescSelectedUser from './BlockDescSelectedUser'
+import { selectRow } from '../../store/action/getDataFromApi'
 
 const TableSmallDataUser = (props) => {
-  const [blockDescUserById, setBlcokDescUserById] = useState({
-    open: false,
-    id: null,
-  })
+  const [blockDescUserById, setBlcokDescUserById] = useState(false)
 
   useEffect(() => {}, [props.smallDataTableUser])
 
@@ -16,7 +14,8 @@ const TableSmallDataUser = (props) => {
     return (
       <tr
         onClick={(event) => {
-          setBlcokDescUserById({ open: true, id: event.currentTarget.id })
+          setBlcokDescUserById(true)
+          props.selectRow(event.currentTarget.id)
         }}
         id={index.id}
         key={key}
@@ -53,12 +52,12 @@ const TableSmallDataUser = (props) => {
         </thead>
         <tbody>{tableSmall32}</tbody>
       </table>
-      {!blockDescUserById.open ? (
-        <React.Fragment />
-      ) : (
+      {blockDescUserById ? (
         <div>
-          <BlockDescSelectedUser idSelectedUser={blockDescUserById.id} />
+          <BlockDescSelectedUser />
         </div>
+      ) : (
+        <React.Fragment />
       )}
     </React.Fragment>
   )
@@ -73,6 +72,7 @@ const mapStateToProps = ({ smallDataTableUserReducer }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   sortDataTable: (key) => dispatch(sortDataTable(key)),
+  selectRow: (id) => dispatch(selectRow(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableSmallDataUser)

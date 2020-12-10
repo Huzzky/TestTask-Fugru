@@ -3,14 +3,15 @@ import { ERROR_DATA, REQUEST_DATA, SUCCESS_DATA, SORT_TABLE } from '../../const'
 const initialState = {
   data: [],
   isFetchingSmallData: false,
-  isLoaded: false,
   sortBy: '',
+  selectedRow: 0,
 }
 
 const dynamicSort = (field) => {
   let sortOrder = 1
   console.log(field)
   if (field[0] === '-') {
+    // * Обратная сортировка
     sortOrder = -1
     field = field.substr(1)
   }
@@ -37,7 +38,6 @@ export function smallDataTableUserReducer(
         ...state,
         data: data,
         isFetchingSmallData: false,
-        isLoaded: true,
       }
     case ERROR_DATA:
       return {
@@ -59,6 +59,11 @@ export function smallDataTableUserReducer(
         ...state,
         sortBy: data,
         data: state.data.slice().sort(dynamicSort(data)),
+      }
+    case 'SELECT_ROW':
+      return {
+        ...state,
+        selectedRow: state.data.find((row) => row.id === parseInt(data)),
       }
     default:
       return {

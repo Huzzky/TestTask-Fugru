@@ -1,7 +1,7 @@
 import { REQUEST_DATA, SUCCESS_DATA, ERROR_DATA, SORT_TABLE } from '../../const'
 import { fetchData } from '../../apiRequests'
 
-export function getDataFromApi(rows) {
+const getDataFromApi = (rows) => {
   return (dispatch) => {
     dispatch({
       type: REQUEST_DATA,
@@ -21,7 +21,16 @@ export function getDataFromApi(rows) {
   }
 }
 
-export const sortDataTable = (field) => {
+const selectRow = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'SELECT_ROW',
+      data: id,
+    })
+  }
+}
+
+const sortDataTable = (field) => {
   return (dispatch) => {
     dispatch({
       type: SORT_TABLE,
@@ -29,3 +38,5 @@ export const sortDataTable = (field) => {
     })
   }
 }
+
+export { getDataFromApi, sortDataTable, selectRow }
