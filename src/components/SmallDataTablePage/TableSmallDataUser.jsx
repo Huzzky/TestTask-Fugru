@@ -58,6 +58,7 @@ const TableSmallDataUser = (props) => {
       </tr>
     )
   })
+
   const upperMainTableSmall32 = Object.keys(
     props.smallDataTableUser.data[0],
   ).map((index, key) => {
@@ -78,6 +79,7 @@ const TableSmallDataUser = (props) => {
       return <td key={key}></td>
     }
   })
+
   return (
     <React.Fragment>
       <table>
