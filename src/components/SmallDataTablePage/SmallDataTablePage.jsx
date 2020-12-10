@@ -4,7 +4,6 @@ import { getDataFromApi } from '../../store/action/getDataFromApi'
 import TableSmallDataUser from './TableSmallDataUser'
 
 const SmallDataTablePage = (props) => {
-  console.log(props)
   useEffect(() => {
     props.getSmallDataTableUser()
     // eslint-disable-next-line react-hooks/exhaustive-deps

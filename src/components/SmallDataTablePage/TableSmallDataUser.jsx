@@ -6,11 +6,7 @@ const TableSmallDataUser = (props) => {
   const [charActiveFieldSmallTable, setCharActiveFieldSmallTable] = useState('')
   const [activeFieldSmallTable, setActiveFieldSmallTable] = useState('')
 
-  console.log(props)
-
-  useEffect(() => {
-    // console.log(props.dataUserSmall, '1234')
-  }, [props.smallDataTableUser])
+  useEffect(() => {}, [props.smallDataTableUser])
 
   const choicePersonUserInSmallTable = (event) => {
     console.log(event.currentTarget.id)
@@ -44,6 +40,10 @@ const TableSmallDataUser = (props) => {
     } else if (activeFieldSmallTable !== event.target.id) {
       setCharActiveFieldSmallTable(String.fromCharCode(9660))
       setActiveFieldSmallTable(event.target.id)
+      props.SortingSmallData(
+        props.smallDataTableUser.data,
+        event.target.id + '_UP',
+      )
     }
   }
 

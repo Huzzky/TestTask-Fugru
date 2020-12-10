@@ -11,10 +11,6 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
-    /* uncomment if you use auth */
-    // if (token) {
-    //   config.headers.Authorization = getToken()
-    // }
     return config
   },
   (error) => {
@@ -24,26 +20,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     return response.data
-    /* uncomment to use custom error codes */
-    // const { success, code, message, data } = response.data
-    // if (success) {
-    //   return data
-    // } else {
-    //   Message({
-    //     message: message,
-    //     type: 'error',
-    //     duration: 5 * 1000
-    //   })
-    //   return Promise.reject(code)
-    // }
   },
   (error) => {
-    /* uncomment to use ui handle error */
-    // Message({
-    //   message: error.message,
-    //   type: 'error',
-    //   duration: 5 * 1000
-    // })
     return Promise.reject(error)
   },
 )
