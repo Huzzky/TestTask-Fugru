@@ -1,18 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { tableSortingFields } from '../../const'
 import { sortDataTable } from '../../store/action/getDataFromApi'
+import BlockDescSelectedUser from './BlockDescSelectedUser'
 
 const TableSmallDataUser = (props) => {
-  useEffect(() => {}, [props.smallDataTableUser])
+  const [blockDescUserById, setBlcokDescUserById] = useState({
+    open: false,
+    id: null,
+  })
 
-  const choicePersonUserInSmallTable = (event) => {
-    console.log(event.currentTarget.id)
-  }
+  useEffect(() => {}, [props.smallDataTableUser])
 
   let tableSmall32 = props.smallDataTableUser.data.map((index, key) => {
     return (
-      <tr onClick={choicePersonUserInSmallTable} id={index.id} key={key}>
+      <tr
+        onClick={(event) => {
+          setBlcokDescUserById({ open: true, id: event.currentTarget.id })
+        }}
+        id={index.id}
+        key={key}
+      >
         <td>{index.id}</td>
         <td>{index.firstName}</td>
         <td>{index.lastName}</td>
@@ -45,6 +53,13 @@ const TableSmallDataUser = (props) => {
         </thead>
         <tbody>{tableSmall32}</tbody>
       </table>
+      {!blockDescUserById.open ? (
+        <React.Fragment />
+      ) : (
+        <div>
+          <BlockDescSelectedUser idSelectedUser={blockDescUserById.id} />
+        </div>
+      )}
     </React.Fragment>
   )
 }
