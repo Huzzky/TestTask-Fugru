@@ -1,27 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import { TableSmallDataUser } from './TableSmallDataUser'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { getDataFromApi } from '../../store/action/getDataFromApi'
+import TableSmallDataUser from './TableSmallDataUser'
 
-export const SmallDataTablePage = (props) => {
-  const [dataUser, setDataUser] = useState(props.smallDataTableUser.data)
-  // console.log(props.smallDataTableUser.isFetchingSmallData)
+const SmallDataTablePage = (props) => {
+  console.log(props)
   useEffect(() => {
     props.getSmallDataTableUser()
-
-    setDataUser(props.smallDataTableUser.data)
-  }, [props.smallDataTableUser.isLoaded])
-  // console.log(dataUser, 'dataUser')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [null])
 
   if (props.smallDataTableUser.isFetchingSmallData) {
     return <h1>Загрузка</h1>
   } else if (!props.smallDataTableUser.isFetchingSmallData) {
     return (
       <div>
-        <TableSmallDataUser
-          getSmallDataTableUser={props.getSmallDataTableUser}
-          SortingSmallData={props.SortingSmallData}
-          dataUserSmall={dataUser}
-        />
+        <TableSmallDataUser />
       </div>
     )
   }
 }
+
+const mapStateToProps = (store) => {
+  return {
+    smallDataTableUser: store.smallDataTableUser,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  getSmallDataTableUser: () => dispatch(getDataFromApi(32)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SmallDataTablePage)
