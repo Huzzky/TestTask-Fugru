@@ -29,7 +29,7 @@ const BlockDescSelectedUser = (props) => {
             </p>
           </React.Fragment>
         ) : (
-          <React.Fragment />
+          <React.Fragment key={key} />
         )
       })}
     </React.Fragment>
