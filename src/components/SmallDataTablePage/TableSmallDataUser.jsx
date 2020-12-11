@@ -1,12 +1,16 @@
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { tableSortingFields } from '../../const'
 import { sortDataTable } from '../../store/action/getDataFromApi'
 import BlockDescSelectedUser from './BlockDescSelectedUser'
 import { selectRow } from '../../store/action/getDataFromApi'
+import { EnterNewUserForDatabase } from './EnterNewUserForDatabase'
 
 const TableSmallDataUser = (props) => {
-  const [blockDescUserById, setBlcokDescUserById] = useState(false)
+  console.log(props)
+  const [openBlockDescUserById, setOpenBlcokDescUserById] = useState(false)
+  const [openBlockInputsNewUser, setOpenBlockInputsNewUser] = useState(false)
 
   useEffect(() => {}, [props.smallDataTableUser])
 
@@ -14,7 +18,7 @@ const TableSmallDataUser = (props) => {
     return (
       <tr
         onClick={(event) => {
-          setBlcokDescUserById(true)
+          setOpenBlcokDescUserById(true)
           props.selectRow(event.currentTarget.id)
         }}
         id={index.id}
@@ -31,20 +35,36 @@ const TableSmallDataUser = (props) => {
 
   return (
     <React.Fragment>
+      <button
+        onClick={() =>
+          setOpenBlockInputsNewUser(openBlockInputsNewUser ? false : true)
+        }
+      >
+        {openBlockInputsNewUser ? '-' : '+'}
+      </button>
       <table>
         <thead>
           <tr>
             {Object.entries(tableSortingFields).map(([key, value]) => {
               return (
-                <td
-                  key={key}
-                  onClick={() => {
-                    props.sortDataTable(key === props.sortBy ? '-' + key : key)
-                  }}
-                >
-                  {value}
-                  {key === props.sortBy ? '▼' : ''}
-                  {'-' + key === props.sortBy ? '▲' : ''}
+                <td key={key}>
+                  <div
+                    onClick={() => {
+                      props.sortDataTable(
+                        key === props.sortBy ? '-' + key : key,
+                      )
+                    }}
+                  >
+                    {value}
+                    {key === props.sortBy ? '▼' : ''}
+                    {'-' + key === props.sortBy ? '▲' : ''}
+                  </div>
+
+                  {openBlockInputsNewUser ? (
+                    <EnterNewUserForDatabase type={key} />
+                  ) : (
+                    <React.Fragment />
+                  )}
                 </td>
               )
             })}
@@ -52,7 +72,7 @@ const TableSmallDataUser = (props) => {
         </thead>
         <tbody>{tableSmall32}</tbody>
       </table>
-      {blockDescUserById ? (
+      {openBlockDescUserById ? (
         <div>
           <BlockDescSelectedUser />
         </div>
@@ -61,6 +81,16 @@ const TableSmallDataUser = (props) => {
       )}
     </React.Fragment>
   )
+}
+
+TableSmallDataUser.propTypes = {
+  selectRow: PropTypes.func,
+  smallDataTableUser: PropTypes.shape({
+    data: PropTypes.array,
+  }),
+
+  sortBy: PropTypes.any,
+  sortDataTable: PropTypes.func,
 }
 
 const mapStateToProps = ({ smallDataTableUserReducer }) => {

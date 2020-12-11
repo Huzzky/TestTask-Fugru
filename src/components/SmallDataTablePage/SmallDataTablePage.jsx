@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getDataFromApi } from '../../store/action/getDataFromApi'
 import TableSmallDataUser from './TableSmallDataUser'
 
 const SmallDataTablePage = (props) => {
+  console.log(props)
   useEffect(() => {
     props.getSmallDataTableUser()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,6 +20,14 @@ const SmallDataTablePage = (props) => {
   )
 }
 
+SmallDataTablePage.propTypes = {
+  getSmallDataTableUser: PropTypes.func,
+  rowsCount: PropTypes.any,
+  smallDataTableUser: PropTypes.shape({
+    isFetchingSmallData: PropTypes.any,
+  }),
+}
+
 const mapStateToProps = (store) => {
   return {
     smallDataTableUser: store.smallDataTableUserReducer,
@@ -25,7 +35,7 @@ const mapStateToProps = (store) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getSmallDataTableUser: () => dispatch(getDataFromApi(4)),
+  getSmallDataTableUser: () => dispatch(getDataFromApi(32)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SmallDataTablePage)

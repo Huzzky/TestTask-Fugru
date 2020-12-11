@@ -23,7 +23,7 @@ class App extends Component {
 
           <Switch>
             <Route path="/small_table">
-              <SmallDataTablePage />
+              <SmallDataTablePage rowsCount={4} />
             </Route>
             <Route path="/big_table">
               <h1>Большая таблица</h1>
