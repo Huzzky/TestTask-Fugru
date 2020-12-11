@@ -47,30 +47,32 @@ const TableSmallDataUser = (props) => {
           <tr>
             {Object.entries(tableSortingFields).map(([key, value]) => {
               return (
-                <td key={key}>
-                  <div
-                    onClick={() => {
-                      props.sortDataTable(
-                        key === props.sortBy ? '-' + key : key,
-                      )
-                    }}
-                  >
-                    {value}
-                    {key === props.sortBy ? '▼' : ''}
-                    {'-' + key === props.sortBy ? '▲' : ''}
-                  </div>
-
-                  {openBlockInputsNewUser ? (
-                    <EnterNewUserForDatabase type={key} />
-                  ) : (
-                    <React.Fragment />
-                  )}
+                <td
+                  key={key}
+                  onClick={() => {
+                    props.sortDataTable(key === props.sortBy ? '-' + key : key)
+                  }}
+                >
+                  {value}
+                  {key === props.sortBy ? '▼' : ''}
+                  {'-' + key === props.sortBy ? '▲' : ''}
                 </td>
               )
             })}
           </tr>
         </thead>
-        <tbody>{tableSmall32}</tbody>
+        <tbody>
+          {openBlockInputsNewUser ? (
+            <tr>
+              <EnterNewUserForDatabase />
+            </tr>
+          ) : (
+            <tr>
+              <td>1234</td>
+            </tr>
+          )}
+          {tableSmall32}
+        </tbody>
       </table>
       {openBlockDescUserById ? (
         <div>
