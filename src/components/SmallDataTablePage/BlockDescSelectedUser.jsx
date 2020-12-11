@@ -2,15 +2,14 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-const BlockDescSelectedUser = (props) => {
-  console.log(props.selectedRow.address)
+const BlockDescSelectedUser = ({ selectedRow }) => {
   let infoSelectedUser = {
-    fullName: props.selectedRow.firstName + ' ' + props.selectedRow.lastName,
-    desc: props.selectedRow.description,
-    streetAddress: props.selectedRow.address.streetAddress,
-    city: props.selectedRow.address.city,
-    state: props.selectedRow.address.state,
-    zip: props.selectedRow.address.zip,
+    fullName: selectedRow.firstName + ' ' + selectedRow.lastName,
+    desc: selectedRow.description,
+    streetAddress: selectedRow.address.streetAddress,
+    city: selectedRow.address.city,
+    state: selectedRow.address.state,
+    zip: selectedRow.address.zip,
   }
   return (
     <React.Fragment>

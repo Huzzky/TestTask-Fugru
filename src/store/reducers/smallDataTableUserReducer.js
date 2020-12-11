@@ -5,6 +5,7 @@ const initialState = {
   isFetchingSmallData: false,
   sortBy: '',
   selectedRow: 0,
+  returnedError: false,
 }
 
 const dynamicSort = (field) => {
@@ -53,6 +54,7 @@ export function smallDataTableUserReducer(
           },
         ],
         isFetchingSmallData: false,
+        returnedError: true,
       }
     case SORT_TABLE:
       return {

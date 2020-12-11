@@ -7,19 +7,23 @@ import BlockDescSelectedUser from './BlockDescSelectedUser'
 import { selectRow } from '../../store/action/getDataFromApi'
 import { EnterNewUserForDatabase } from './EnterNewUserForDatabase'
 
-const TableSmallDataUser = (props) => {
-  console.log(props)
+const TableSmallDataUser = ({
+  smallDataTableUser,
+  selectRow,
+  sortDataTable,
+  sortBy,
+}) => {
   const [openBlockDescUserById, setOpenBlcokDescUserById] = useState(false)
   const [openBlockInputsNewUser, setOpenBlockInputsNewUser] = useState(false)
 
-  useEffect(() => {}, [props.smallDataTableUser])
+  useEffect(() => {}, [smallDataTableUser])
 
-  let tableSmall32 = props.smallDataTableUser.data.map((index, key) => {
+  let tableSmall32 = smallDataTableUser.data.map((index, key) => {
     return (
       <tr
         onClick={(event) => {
           setOpenBlcokDescUserById(true)
-          props.selectRow(event.currentTarget.id)
+          selectRow(event.currentTarget.id)
         }}
         id={index.id}
         key={key}
@@ -50,12 +54,12 @@ const TableSmallDataUser = (props) => {
                 <td
                   key={key}
                   onClick={() => {
-                    props.sortDataTable(key === props.sortBy ? '-' + key : key)
+                    sortDataTable(key === sortBy ? '-' + key : key)
                   }}
                 >
                   {value}
-                  {key === props.sortBy ? '▼' : ''}
-                  {'-' + key === props.sortBy ? '▲' : ''}
+                  {key === sortBy ? '▼' : ''}
+                  {'-' + key === sortBy ? '▲' : ''}
                 </td>
               )
             })}
@@ -63,9 +67,7 @@ const TableSmallDataUser = (props) => {
         </thead>
         <tbody>
           {openBlockInputsNewUser ? (
-            <tr>
-              <EnterNewUserForDatabase />
-            </tr>
+            <EnterNewUserForDatabase />
           ) : (
             <tr>
               <td />

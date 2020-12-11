@@ -3,7 +3,7 @@ import SmallDataTablePage from '../components/SmallDataTablePage/SmallDataTableP
 
 class SimpleTablePage extends Component {
   render() {
-    return <SmallDataTablePage rowsCount={1000} />
+    return <SmallDataTablePage rowsCount={32} />
   }
 }
 
