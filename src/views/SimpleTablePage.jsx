@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
+import SmallDataTablePage from '../components/SmallDataTablePage/SmallDataTablePage'
 
-export const SimpleTablePage = () => {
-  return <div></div>
+class SimpleTablePage extends Component {
+  render() {
+    return <SmallDataTablePage rowsCount={1000} />
+  }
 }
+
+export default SimpleTablePage

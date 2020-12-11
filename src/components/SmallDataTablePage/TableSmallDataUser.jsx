@@ -68,7 +68,7 @@ const TableSmallDataUser = (props) => {
             </tr>
           ) : (
             <tr>
-              <td>1234</td>
+              <td />
             </tr>
           )}
           {tableSmall32}
@@ -86,13 +86,13 @@ const TableSmallDataUser = (props) => {
 }
 
 TableSmallDataUser.propTypes = {
-  selectRow: PropTypes.func,
+  selectRow: PropTypes.func.isRequired,
   smallDataTableUser: PropTypes.shape({
-    data: PropTypes.array,
+    data: PropTypes.array.isRequired,
   }),
 
-  sortBy: PropTypes.any,
-  sortDataTable: PropTypes.func,
+  sortBy: PropTypes.string,
+  sortDataTable: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ smallDataTableUserReducer }) => {

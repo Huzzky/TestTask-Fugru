@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const BlockDescSelectedUser = (props) => {
+  console.log(props.selectedRow.address)
   let infoSelectedUser = {
     fullName: props.selectedRow.firstName + ' ' + props.selectedRow.lastName,
     desc: props.selectedRow.description,
@@ -68,14 +69,14 @@ const BlockDescSelectedUser = (props) => {
 BlockDescSelectedUser.propTypes = {
   selectedRow: PropTypes.shape({
     address: PropTypes.shape({
-      city: PropTypes.any,
-      state: PropTypes.any,
-      streetAddress: PropTypes.any,
-      zip: PropTypes.any,
+      city: PropTypes.string.isRequired,
+      state: PropTypes.string.isRequired,
+      streetAddress: PropTypes.string.isRequired,
+      zip: PropTypes.string.isRequired,
     }),
-    description: PropTypes.any,
-    firstName: PropTypes.string,
-    lastName: PropTypes.any,
+    description: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.any.isRequired,
   }),
 }
 

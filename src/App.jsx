@@ -1,14 +1,13 @@
 // import './styles/App.css'
 
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import {
   BrowserRouter as Router,
   Route,
   NavLink,
   Switch,
 } from 'react-router-dom'
-import SmallDataTablePage from './components/SmallDataTablePage/SmallDataTablePage'
-
+const SimpleTablePage = React.lazy(() => import('./views/SimpleTablePage'))
 class App extends Component {
   render() {
     return (
@@ -21,17 +20,21 @@ class App extends Component {
             <button>Большой объем данных</button>
           </NavLink>
 
-          <Switch>
-            <Route path="/small_table">
-              <SmallDataTablePage rowsCount={4} />
-            </Route>
-            <Route path="/big_table">
-              <h1>Большая таблица</h1>
-            </Route>
-            <Route path="/">
-              <h1>Выберите объем данных</h1>
-            </Route>
-          </Switch>
+          <React.Fragment>
+            <Suspense fallback={<h1>Загрузка...</h1>}>
+              <Switch>
+                <Route path="/small_table">
+                  <SimpleTablePage />
+                </Route>
+                <Route path="/big_table">
+                  <h1>Большая таблица</h1>
+                </Route>
+                <Route path="/">
+                  <h1>Выберите объем данных</h1>
+                </Route>
+              </Switch>
+            </Suspense>
+          </React.Fragment>
         </Router>
       </div>
     )
