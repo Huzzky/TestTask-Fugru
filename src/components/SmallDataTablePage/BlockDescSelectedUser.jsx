@@ -3,6 +3,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const BlockDescSelectedUser = ({ selectedRow }) => {
+  let test = {
+    fullName: 'Выбран пользователь: ',
+    desc: 'Описание: ',
+    streetAddress: 'Адрес проживания: ',
+    city: 'Город: ',
+    state: 'Провинция/Штат: ',
+    zip: 'Индекс: ',
+  }
+
   let infoSelectedUser = {
     fullName: selectedRow.firstName + ' ' + selectedRow.lastName,
     desc: selectedRow.description,
@@ -11,55 +20,18 @@ const BlockDescSelectedUser = ({ selectedRow }) => {
     state: selectedRow.address.state,
     zip: selectedRow.address.zip,
   }
+
   return (
     <React.Fragment>
       <React.Fragment>
-        <p>
-          Выбран пользователь{' '}
-          <b>
-            {infoSelectedUser.fullName !== undefined
-              ? infoSelectedUser.fullName
-              : 'Unknown User'}
-          </b>
-        </p>
-        <p>Описание:</p>
-        <p>
-          {infoSelectedUser.desc !== undefined
-            ? infoSelectedUser.desc
-            : 'No description'}
-        </p>
-        <p>
-          Адрес проживания:{' '}
-          <b>
-            {infoSelectedUser.streetAddress !== undefined
-              ? infoSelectedUser.streetAddress
-              : 'Unknown address'}
-          </b>
-        </p>
-        <p>
-          Город:{' '}
-          <b>
-            {infoSelectedUser.city !== undefined
-              ? infoSelectedUser.city
-              : 'Unknown City'}
-          </b>
-        </p>
-        <p>
-          Провинция/штат:{' '}
-          <b>
-            {infoSelectedUser.state !== undefined
-              ? infoSelectedUser.state
-              : 'Unknown State'}
-          </b>
-        </p>
-        <p>
-          Индекс:{' '}
-          <b>
-            {infoSelectedUser.zip !== undefined
-              ? infoSelectedUser.zip
-              : 'Unknown ZIP'}
-          </b>
-        </p>
+        {Object.entries(infoSelectedUser).map(([key, value]) => {
+          return (
+            <p key={key}>
+              {test[key]}
+              <b>{value ? value : 'Неизвестно'}</b>
+            </p>
+          )
+        })}
       </React.Fragment>
     </React.Fragment>
   )
