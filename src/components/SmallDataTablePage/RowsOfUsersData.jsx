@@ -8,6 +8,7 @@ const component = ({
   setOpenBlockDescUserById,
   selectRow,
 }) => {
+  console.log(RowsOfUsersData)
   return RowsOfUsersData.map((index, key) => {
     return (
       <tr

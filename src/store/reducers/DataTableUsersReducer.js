@@ -16,34 +16,50 @@ const initialState = {
   sortBy: '',
   selectedRow: 0,
   returnedError: false,
+  reserveData: [],
 }
 
-const regSearchRow = (enteredString, sdata) => {
-  let arrSData = sdata
-  let phoneString = ''
-  enteredString = enteredString.split(' ')
-  Object.entries(enteredString).map(([keyString, valueString]) => {
-    Object.entries(tableSortingFields).map(([key, value]) => {
-      arrSData.filter((valueFilter) => {
-        if (key === 'phone') {
-          phoneString = valueFilter.phone
-            .replace(/\(/g, '')
-            .replace(/\)/g, '')
-            .replace(/-/g, '')
-        }
-        if (
-          '' + valueFilter[key] === valueString ||
-          phoneString === valueString ||
-          phoneString.exec(/value/)
-        ) {
-          console.log(valueFilter[key], valueString)
-        }
+const regSearchRow = (enteredString, sdata, reserveData) => {
+  if (enteredString === '') {
+    return reserveData
+  } else {
+    if (reserveData.length !== sdata.length) {
+      sdata = reserveData
+    }
+    let dataSearch = []
+    let arrSData = sdata
+    enteredString = enteredString.split(' ')
+    Object.entries(enteredString).map(([keyString, valueString]) => {
+      Object.entries(tableSortingFields).map(([key, value]) => {
+        arrSData.filter((valueFilter) => {
+          let phoneString = ''
+          if (key === 'phone') {
+            phoneString = valueFilter.phone
+              .replace(/\(/g, '')
+              .replace(/\)/g, '')
+              .replace(/-/g, '')
+            let test = valueString.split('').filter(function (i) {
+              return phoneString.split('').indexOf(i) < 0
+            })
+
+            if (test.length === 0) {
+              dataSearch.push(valueFilter)
+            }
+          }
+          if (
+            '' + valueFilter[key] === valueString ||
+            phoneString === valueString
+          ) {
+            dataSearch.unshift(valueFilter)
+          }
+          return ''
+        })
         return ''
       })
       return ''
     })
-    return ''
-  })
+    return dataSearch
+  }
 }
 
 const dynamicSort = (field) => {
@@ -75,6 +91,7 @@ export default function DataTableUsersReducer(
       return {
         ...state,
         data: data,
+        reserveData: data,
         isFetchingSmallData: false,
       }
     case ERROR_DATA:
@@ -94,10 +111,9 @@ export default function DataTableUsersReducer(
         returnedError: true,
       }
     case SEARCH_ROW:
-      regSearchRow(data, state.data)
       return {
         ...state,
-        // data: data
+        data: regSearchRow(data, state.data, state.reserveData),
       }
     case SORT_TABLE:
       return {

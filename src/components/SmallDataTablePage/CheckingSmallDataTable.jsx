@@ -17,7 +17,7 @@ const CheckingSmallDataTable = ({
   ) : lengthDataTable > 0 ? (
     <TableSmallDataUser />
   ) : (
-    <h1>Неизвестная ошибка. Перезагрузите страницу</h1>
+    <h1>Пусто</h1>
   )
 }
 
