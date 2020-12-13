@@ -3,8 +3,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SmallDataTablePage from '../components/SmallDataTablePage/SmallDataTablePage'
 import { getDataFromApi } from '../store/action/getDataFromApi'
+var { registerObserver } = require('react-perf-devtool')
 
-class SimpleTablePage extends Component {
+registerObserver()
+
+class SmallTablePage extends Component {
   componentDidMount() {
     this.props.getSmallDataTableUser(32)
   }
@@ -14,7 +17,7 @@ class SimpleTablePage extends Component {
   }
 }
 
-SimpleTablePage.propTypes = {
+SmallTablePage.propTypes = {
   getDataFromApi: PropTypes.func,
 }
 
@@ -22,4 +25,4 @@ const mapDispatchToProps = (dispatch) => ({
   getSmallDataTableUser: (rows) => dispatch(getDataFromApi(rows)),
 })
 
-export default connect(null, mapDispatchToProps)(SimpleTablePage)
+export default connect(null, mapDispatchToProps)(SmallTablePage)

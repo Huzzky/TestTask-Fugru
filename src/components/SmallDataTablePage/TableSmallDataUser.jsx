@@ -4,38 +4,18 @@ import { connect } from 'react-redux'
 import { tableSortingFields } from '../../const'
 import { sortDataTable } from '../../store/action/getDataFromApi'
 import BlockDescSelectedUser from './BlockDescSelectedUser'
-import { selectRow } from '../../store/action/getDataFromApi'
-import { EnterNewUserForDatabase } from './EnterNewUserForDatabase'
+import { RecordNewUserForDatabase } from './componentRecordNewUser/RecordNewUserForDatabase'
+import RowsOfUsersData from './RowsOfUsersData'
 
-const TableSmallDataUser = ({
-  smallDataTableUser,
-  selectRow,
-  sortDataTable,
-  sortBy,
-}) => {
-  const [openBlockDescUserById, setOpenBlcokDescUserById] = useState(false)
+const TableSmallDataUser = ({ smallDataTableUser, sortDataTable, sortBy }) => {
+  const [openBlockDescUserById, setOpenBlockDescUserById] = useState(false)
   const [openBlockInputsNewUser, setOpenBlockInputsNewUser] = useState(false)
 
   useEffect(() => {}, [smallDataTableUser, smallDataTableUser.data])
 
-  let tableSmall32 = smallDataTableUser.data.map((index, key) => {
-    return (
-      <tr
-        onClick={(event) => {
-          setOpenBlcokDescUserById(true)
-          selectRow(event.currentTarget.id)
-        }}
-        id={index.id}
-        key={key}
-      >
-        <td>{index.id}</td>
-        <td>{index.firstName}</td>
-        <td>{index.lastName}</td>
-        <td>{index.email}</td>
-        <td>{index.phone}</td>
-      </tr>
-    )
-  })
+  const funcSetOpenBlockDescUserById = () => {
+    setOpenBlockDescUserById(true)
+  }
 
   return (
     <React.Fragment>
@@ -67,13 +47,16 @@ const TableSmallDataUser = ({
         </thead>
         <tbody>
           {openBlockInputsNewUser ? (
-            <EnterNewUserForDatabase />
+            <RecordNewUserForDatabase />
           ) : (
             <tr>
               <td />
             </tr>
           )}
-          {tableSmall32}
+          {/* {tableSmall32} */}
+          <RowsOfUsersData
+            setOpenBlockDescUserById={funcSetOpenBlockDescUserById}
+          />
         </tbody>
       </table>
       {openBlockDescUserById ? (
@@ -88,7 +71,6 @@ const TableSmallDataUser = ({
 }
 
 TableSmallDataUser.propTypes = {
-  selectRow: PropTypes.func.isRequired,
   smallDataTableUser: PropTypes.shape({
     data: PropTypes.array,
   }),
@@ -106,7 +88,6 @@ const mapStateToProps = ({ smallDataTableUserReducer }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   sortDataTable: (key) => dispatch(sortDataTable(key)),
-  selectRow: (id) => dispatch(selectRow(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableSmallDataUser)

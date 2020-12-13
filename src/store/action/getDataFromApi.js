@@ -1,4 +1,11 @@
-import { REQUEST_DATA, SUCCESS_DATA, ERROR_DATA, SORT_TABLE } from '../../const'
+import {
+  REQUEST_DATA,
+  SUCCESS_DATA,
+  ERROR_DATA,
+  SORT_TABLE,
+  SEND_NEW_USER_IN_TABLE,
+  SUCCESS_NEW_USER_IN_TABLE,
+} from '../../const'
 import { fetchData } from '../../apiRequests'
 
 const getDataFromApi = (rows) => {
@@ -24,9 +31,14 @@ const getDataFromApi = (rows) => {
 const addNewUserInTable = (data) => {
   return (dispatch) => {
     dispatch({
-      type: 'ADD_NEW_USER_IN_TABLE',
-      data: data,
+      type: SEND_NEW_USER_IN_TABLE,
     })
+    setTimeout(() => {
+      dispatch({
+        type: SUCCESS_NEW_USER_IN_TABLE,
+        data: data,
+      })
+    }, 2000)
   }
 }
 

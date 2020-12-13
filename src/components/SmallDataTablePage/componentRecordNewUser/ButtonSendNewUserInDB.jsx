@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
-import { addNewUserInTable } from '../../store/action/getDataFromApi'
+import { addNewUserInTable } from '../../../store/action/getDataFromApi'
 
-const ButtonSendNewUser = (props) => {
+const ButtonSendNewUserInDB = (props) => {
   const sendNewUserForDB = () => {
     let data = {
       id: props.id,
@@ -41,7 +41,7 @@ const ButtonSendNewUser = (props) => {
   )
 }
 
-ButtonSendNewUser.propTypes = {
+ButtonSendNewUserInDB.propTypes = {
   id: PropTypes.number.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
@@ -54,4 +54,4 @@ const mapDispatchToProps = (dispatch) => ({
   postNewUserInTable: (data) => dispatch(addNewUserInTable(data)),
 })
 
-export default connect(null, mapDispatchToProps)(ButtonSendNewUser)
+export default connect(null, mapDispatchToProps)(ButtonSendNewUserInDB)

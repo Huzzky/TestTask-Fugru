@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { tableSortingFields } from '../../const'
-import { validationEnteringData } from '../../utils/checkValidationEnteringData'
-import ButtonSendNewUser from './ButtonSendNewUser'
+import { tableSortingFields } from '../../../const'
+import { validationEnteringData } from '../../../utils/checkValidationEnteringData'
+import ButtonSendNewUserInDB from './ButtonSendNewUserInDB'
 
-export const EnterNewUserForDatabase = () => {
+export const RecordNewUserForDatabase = () => {
   const [updateComponent, setUpdateComponent] = useState(false)
   const [id] = useState(Date.now())
   const [firstName, setFirstName] = useState('')
@@ -105,7 +105,7 @@ export const EnterNewUserForDatabase = () => {
         )
       })}
       <td>
-        <ButtonSendNewUser
+        <ButtonSendNewUserInDB
           id={id}
           firstName={firstName}
           lastName={lastName}

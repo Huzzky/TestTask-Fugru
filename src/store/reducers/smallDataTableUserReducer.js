@@ -1,4 +1,12 @@
-import { ERROR_DATA, REQUEST_DATA, SUCCESS_DATA, SORT_TABLE } from '../../const'
+import {
+  ERROR_DATA,
+  REQUEST_DATA,
+  SUCCESS_DATA,
+  SORT_TABLE,
+  SELECT_ROW,
+  SUCCESS_NEW_USER_IN_TABLE,
+  SEND_NEW_USER_IN_TABLE,
+} from '../../const'
 
 const initialState = {
   data: [],
@@ -10,7 +18,6 @@ const initialState = {
 
 const dynamicSort = (field) => {
   let sortOrder = 1
-  console.log(field)
   if (field[0] === '-') {
     // * Обратная сортировка
     sortOrder = -1
@@ -62,15 +69,23 @@ export function smallDataTableUserReducer(
         sortBy: data,
         data: state.data.slice().sort(dynamicSort(data)),
       }
-    case 'SELECT_ROW':
+    case SELECT_ROW:
       return {
         ...state,
         selectedRow: state.data.find((row) => row.id === parseInt(data)),
       }
-    case 'ADD_NEW_USER_IN_TABLE':
+    case SEND_NEW_USER_IN_TABLE:
+      return {
+        ...state,
+        isFetchingSmallData: true,
+      }
+    case SUCCESS_NEW_USER_IN_TABLE:
+      console.log(state)
+      state.data.unshift(data)
       return {
         ...state,
         data: state.data,
+        isFetchingSmallData: false,
       }
     default:
       return {

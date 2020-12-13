@@ -7,7 +7,7 @@ import {
   NavLink,
   Switch,
 } from 'react-router-dom'
-const SimpleTablePage = React.lazy(() => import('./views/SimpleTablePage'))
+const SmallTablePage = React.lazy(() => import('./views/SmallTablePage'))
 class App extends Component {
   render() {
     return (
@@ -24,7 +24,7 @@ class App extends Component {
             <Suspense fallback={<h1>Загрузка...</h1>}>
               <Switch>
                 <Route path="/small_table">
-                  <SimpleTablePage />
+                  <SmallTablePage />
                 </Route>
                 <Route path="/big_table">
                   <h1>Большая таблица</h1>

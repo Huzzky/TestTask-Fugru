@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { memo } from 'react'
 import { connect } from 'react-redux'
 
-const BlockDescSelectedUser = ({ selectedRow }) => {
+const component = ({ selectedRow }) => {
   let test = {
     fullName: 'Выбран пользователь: ',
     desc: 'Описание: ',
@@ -47,7 +47,7 @@ const BlockDescSelectedUser = ({ selectedRow }) => {
   )
 }
 
-BlockDescSelectedUser.propTypes = {
+component.propTypes = {
   selectedRow: PropTypes.shape({
     address: PropTypes.shape({
       city: PropTypes.string,
@@ -66,5 +66,5 @@ const mapStateToProps = ({ smallDataTableUserReducer }) => {
     selectedRow: smallDataTableUserReducer.selectedRow,
   }
 }
-
+const BlockDescSelectedUser = memo(component)
 export default connect(mapStateToProps)(BlockDescSelectedUser)

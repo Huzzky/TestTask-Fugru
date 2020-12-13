@@ -4,16 +4,20 @@ export const validationEnteringData = (value, type, setValidated, key) => {
     if (re.test(String(value).toLowerCase())) {
       setValidated(value, key)
     } else {
-      return ''
+      setValidated('', key)
     }
   } else if (type === 'tel') {
     let re = new RegExp('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
     if (re.test(value)) {
       setValidated(value, key)
     } else {
-      return ''
+      setValidated('', key)
     }
   } else if (type === 'text') {
-    setValidated(value, key)
+    if (value.trim() === '') {
+      setValidated('', key)
+    } else {
+      setValidated(value.trim(), key)
+    }
   }
 }
