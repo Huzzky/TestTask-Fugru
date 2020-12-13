@@ -67,6 +67,11 @@ export function smallDataTableUserReducer(
         ...state,
         selectedRow: state.data.find((row) => row.id === parseInt(data)),
       }
+    case 'ADD_NEW_USER_IN_TABLE':
+      return {
+        ...state,
+        data: state.data,
+      }
     default:
       return {
         data: [

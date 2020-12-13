@@ -8,34 +8,30 @@ const SmallDataTablePage = ({
   isFetchingSmallData,
   returnError,
   lengthData,
-  getSmallDataTableUser,
-  rowsCount,
+  smallDataTableUser,
 }) => {
-  useEffect(() => {
-    getSmallDataTableUser(rowsCount)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [null])
+  useEffect(() => {}, [smallDataTableUser, smallDataTableUser.data])
 
   return isFetchingSmallData ? (
     <h1>Подзагрузка...</h1>
   ) : returnError ? (
     <h1>Ошибка</h1>
-  ) : +lengthData > 2 ? (
+  ) : smallDataTableUser.data.length > 0 ? (
     <TableSmallDataUser />
   ) : (
     <h1>Догружаем...</h1>
   )
 }
 
-SmallDataTablePage.propTypes = {
-  getSmallDataTableUser: PropTypes.func.isRequired,
-  rowsCount: PropTypes.number.isRequired,
-  smallDataTableUser: PropTypes.shape({
-    isFetchingSmallData: PropTypes.bool,
-    data: PropTypes.array.isRequired,
-    returnedError: PropTypes.bool,
-  }),
-}
+// SmallDataTablePage.propTypes = {
+//   getSmallDataTableUser: PropTypes.func.isRequired,
+//   rowsCount: PropTypes.number.isRequired,
+//   smallDataTableUser: PropTypes.shape({
+//     isFetchingSmallData: PropTypes.bool,
+//     data: PropTypes.array,
+//     returnedError: PropTypes.bool,
+//   }),
+// }
 
 const mapStateToProps = (store) => {
   return {
@@ -46,8 +42,4 @@ const mapStateToProps = (store) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getSmallDataTableUser: (rows) => dispatch(getDataFromApi(rows)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SmallDataTablePage)
+export default connect(mapStateToProps)(SmallDataTablePage)

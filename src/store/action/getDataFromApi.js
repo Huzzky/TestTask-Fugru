@@ -21,6 +21,15 @@ const getDataFromApi = (rows) => {
   }
 }
 
+const addNewUserInTable = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'ADD_NEW_USER_IN_TABLE',
+      data: data,
+    })
+  }
+}
+
 const selectRow = (id) => {
   return (dispatch) => {
     dispatch({
@@ -39,4 +48,4 @@ const sortDataTable = (field) => {
   }
 }
 
-export { getDataFromApi, sortDataTable, selectRow }
+export { getDataFromApi, sortDataTable, selectRow, addNewUserInTable }

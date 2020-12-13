@@ -14,11 +14,21 @@ const BlockDescSelectedUser = ({ selectedRow }) => {
 
   let infoSelectedUser = {
     fullName: selectedRow.firstName + ' ' + selectedRow.lastName,
-    desc: selectedRow.description,
-    streetAddress: selectedRow.address.streetAddress,
-    city: selectedRow.address.city,
-    state: selectedRow.address.state,
-    zip: selectedRow.address.zip,
+    desc: selectedRow.description
+      ? selectedRow.description
+      : 'Описание неизвестно',
+    streetAddress: selectedRow.address.streetAddress
+      ? selectedRow.address.streetAddress
+      : 'Адрес неизвестен',
+    city: selectedRow.address.city
+      ? selectedRow.address.city
+      : 'Город неизвестен',
+    state: selectedRow.address.state
+      ? selectedRow.address.state
+      : 'Штат неизвестен',
+    zip: selectedRow.address.zip
+      ? selectedRow.address.zip
+      : 'Индекс неизвестен',
   }
 
   return (
@@ -40,10 +50,10 @@ const BlockDescSelectedUser = ({ selectedRow }) => {
 BlockDescSelectedUser.propTypes = {
   selectedRow: PropTypes.shape({
     address: PropTypes.shape({
-      city: PropTypes.string.isRequired,
-      state: PropTypes.string.isRequired,
-      streetAddress: PropTypes.string.isRequired,
-      zip: PropTypes.string.isRequired,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      streetAddress: PropTypes.string,
+      zip: PropTypes.string,
     }),
     description: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,

@@ -16,7 +16,7 @@ const TableSmallDataUser = ({
   const [openBlockDescUserById, setOpenBlcokDescUserById] = useState(false)
   const [openBlockInputsNewUser, setOpenBlockInputsNewUser] = useState(false)
 
-  useEffect(() => {}, [smallDataTableUser])
+  useEffect(() => {}, [smallDataTableUser, smallDataTableUser.data])
 
   let tableSmall32 = smallDataTableUser.data.map((index, key) => {
     return (
@@ -90,7 +90,7 @@ const TableSmallDataUser = ({
 TableSmallDataUser.propTypes = {
   selectRow: PropTypes.func.isRequired,
   smallDataTableUser: PropTypes.shape({
-    data: PropTypes.array.isRequired,
+    data: PropTypes.array,
   }),
 
   sortBy: PropTypes.string,
