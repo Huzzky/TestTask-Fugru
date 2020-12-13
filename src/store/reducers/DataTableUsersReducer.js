@@ -6,6 +6,8 @@ import {
   SELECT_ROW,
   SUCCESS_NEW_USER_IN_TABLE,
   SEND_NEW_USER_IN_TABLE,
+  SEARCH_ROW,
+  tableSortingFields,
 } from '../../const'
 
 const initialState = {
@@ -14,6 +16,34 @@ const initialState = {
   sortBy: '',
   selectedRow: 0,
   returnedError: false,
+}
+
+const regSearchRow = (enteredString, sdata) => {
+  let arrSData = sdata
+  let phoneString = ''
+  enteredString = enteredString.split(' ')
+  Object.entries(enteredString).map(([keyString, valueString]) => {
+    Object.entries(tableSortingFields).map(([key, value]) => {
+      arrSData.filter((valueFilter) => {
+        if (key === 'phone') {
+          phoneString = valueFilter.phone
+            .replace(/\(/g, '')
+            .replace(/\)/g, '')
+            .replace(/-/g, '')
+        }
+        if (
+          '' + valueFilter[key] === valueString ||
+          phoneString === valueString ||
+          phoneString.exec(/value/)
+        ) {
+          console.log(valueFilter[key], valueString)
+        }
+        return ''
+      })
+      return ''
+    })
+    return ''
+  })
 }
 
 const dynamicSort = (field) => {
@@ -31,7 +61,7 @@ const dynamicSort = (field) => {
   }
 }
 
-export function smallDataTableUserReducer(
+export default function DataTableUsersReducer(
   state = initialState,
   { type, data },
 ) {
@@ -62,6 +92,12 @@ export function smallDataTableUserReducer(
         ],
         isFetchingSmallData: false,
         returnedError: true,
+      }
+    case SEARCH_ROW:
+      regSearchRow(data, state.data)
+      return {
+        ...state,
+        // data: data
       }
     case SORT_TABLE:
       return {

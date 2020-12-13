@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectRow } from '../../store/action/getDataFromApi'
+import { selectRow } from '../../store/action/workWithTable'
 
 const component = ({
   RowsOfUsersData,
@@ -33,7 +33,7 @@ component.propTypes = {
 }
 
 const mapStateToProps = (store) => ({
-  RowsOfUsersData: store.smallDataTableUserReducer.data,
+  RowsOfUsersData: store.DataTableUsersReducer.data,
 })
 
 const mapDispatchToProps = (dispatch) => ({

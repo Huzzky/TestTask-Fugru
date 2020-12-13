@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import SmallDataTablePage from '../components/SmallDataTablePage/SmallDataTablePage'
+import SearchBar from '../components/SearchBar/SearchBar'
+import CheckingSmallDataTable from '../components/SmallDataTablePage/CheckingSmallDataTable'
 import { getDataFromApi } from '../store/action/getDataFromApi'
 var { registerObserver } = require('react-perf-devtool')
 
@@ -13,7 +14,13 @@ class SmallTablePage extends Component {
   }
 
   render() {
-    return <SmallDataTablePage rowsCount={32} />
+    return (
+      <>
+        <br />
+        <SearchBar />
+        <CheckingSmallDataTable rowsCount={32} />
+      </>
+    )
   }
 }
 

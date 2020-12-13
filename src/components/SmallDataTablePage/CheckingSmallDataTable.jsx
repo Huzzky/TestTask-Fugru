@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import TableSmallDataUser from './TableSmallDataUser'
 
-const SmallDataTablePage = ({
+const CheckingSmallDataTable = ({
   isFetchingSmallData,
   returnError,
   lengthDataTable,
@@ -21,7 +21,7 @@ const SmallDataTablePage = ({
   )
 }
 
-SmallDataTablePage.propTypes = {
+CheckingSmallDataTable.propTypes = {
   lengthDataTable: PropTypes.number.isRequired,
   smallDataTableUser: PropTypes.shape({
     isFetchingSmallData: PropTypes.bool,
@@ -32,10 +32,10 @@ SmallDataTablePage.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    lengthDataTable: store.smallDataTableUserReducer.data.length,
-    returnError: store.smallDataTableUserReducer.returnedError,
-    isFetchingSmallData: store.smallDataTableUserReducer.isFetchingSmallData,
+    lengthDataTable: store.DataTableUsersReducer.data.length,
+    returnError: store.DataTableUsersReducer.returnedError,
+    isFetchingSmallData: store.DataTableUsersReducer.isFetchingSmallData,
   }
 }
 
-export default connect(mapStateToProps)(SmallDataTablePage)
+export default connect(mapStateToProps)(CheckingSmallDataTable)

@@ -55,15 +55,15 @@ component.propTypes = {
       streetAddress: PropTypes.string,
       zip: PropTypes.string,
     }),
-    description: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.any.isRequired,
+    description: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
   }),
 }
 
-const mapStateToProps = ({ smallDataTableUserReducer }) => {
+const mapStateToProps = ({ DataTableUsersReducer }) => {
   return {
-    selectedRow: smallDataTableUserReducer.selectedRow,
+    selectedRow: DataTableUsersReducer.selectedRow,
   }
 }
 const BlockDescSelectedUser = memo(component)

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
-import { addNewUserInTable } from '../../../store/action/getDataFromApi'
+import { addNewUserInTable } from '../../../store/action/sendNewUserInDB'
 
 const ButtonSendNewUserInDB = (props) => {
-  const sendNewUserForDB = () => {
+  const sendNewUserForDB = (e) => {
+    e.preventDefault()
     let data = {
       id: props.id,
       firstName: props.firstName,
@@ -25,7 +26,7 @@ const ButtonSendNewUserInDB = (props) => {
   return (
     // <form>
     <button
-      onClick={(e) => sendNewUserForDB()}
+      onClick={(e) => sendNewUserForDB(e)}
       disabled={
         props.firstName.length > 0 &&
         props.lastName.length > 0 &&
