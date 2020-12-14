@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { searchRow } from '../../store/action/workWithTable'
 
-const SearchBar = ({ searchRow }) => {
+const ComponentSearchBar = ({ searchRow }) => {
   let [refSearchInput, setRefSearchInput] = React.useState('')
   return (
     <>
@@ -18,12 +18,14 @@ const SearchBar = ({ searchRow }) => {
   )
 }
 
-SearchBar.propTypes = {
+ComponentSearchBar.propTypes = {
   searchRow: PropTypes.func,
 }
 
 const mapDispatchToProps = (dispatch) => ({
   searchRow: (enteredString) => dispatch(searchRow(enteredString)),
 })
+
+const SearchBar = memo(ComponentSearchBar)
 
 export default connect(null, mapDispatchToProps)(SearchBar)

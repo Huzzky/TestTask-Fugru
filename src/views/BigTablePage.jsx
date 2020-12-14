@@ -8,7 +8,7 @@ import Pagination from '../components/BigDataTablePage/Pagination'
 
 export class BigTablePage extends Component {
   componentDidMount() {
-    this.props.getBigDataTableUser(1000, this.props.match.params.id)
+    this.props.getBigDataTableUser(1000, +this.props.match.params.id - 1)
   }
 
   render() {
@@ -25,6 +25,11 @@ export class BigTablePage extends Component {
 
 BigTablePage.propTypes = {
   getBigDataTableUser: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.any,
+    }),
+  }),
 }
 
 const mapDispatchToProps = (dispatch) => ({

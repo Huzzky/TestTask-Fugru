@@ -22,12 +22,9 @@ const CheckingBigDataTable = ({
 }
 
 CheckingBigDataTable.propTypes = {
-  lengthDataTable: PropTypes.number.isRequired,
-  smallDataTableUser: PropTypes.shape({
-    data: PropTypes.array,
-    returnedError: PropTypes.bool,
-    isFetchingSmallData: PropTypes.bool,
-  }),
+  isFetchingSmallData: PropTypes.bool,
+  lengthDataTable: PropTypes.number,
+  returnError: PropTypes.bool,
 }
 
 const mapStoreToProps = (store) => {
