@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+    client:
+        build:
+          context: .
+        container_name: client
+        restart: always
+        ports:
+          - 80:80
