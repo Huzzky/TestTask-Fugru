@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { tableSortingFields } from '../../../const'
-import { validationEnteringData } from '../../../utils/checkValidationEnteringData'
+import { tableSortingFields } from '../../const'
+import { validationEnteringData } from '../../utils/checkValidationEnteringData'
 import ButtonSendNewUserInDB from './ButtonSendNewUserInDB'
 
 export const RecordNewUserForDatabase = () => {

@@ -1,9 +1,9 @@
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import React, { useEffect } from 'react'
 import TableDataUser from '../TableDataUser'
 
-const CheckingSmallDataTable = ({
+const CheckingBigDataTable = ({
   isFetchingSmallData,
   returnError,
   lengthDataTable,
@@ -21,7 +21,7 @@ const CheckingSmallDataTable = ({
   )
 }
 
-CheckingSmallDataTable.propTypes = {
+CheckingBigDataTable.propTypes = {
   lengthDataTable: PropTypes.number.isRequired,
   smallDataTableUser: PropTypes.shape({
     data: PropTypes.array,
@@ -30,7 +30,7 @@ CheckingSmallDataTable.propTypes = {
   }),
 }
 
-const mapStateToProps = (store) => {
+const mapStoreToProps = (store) => {
   return {
     returnError: store.DataTableUsersReducer.returnedError,
     lengthDataTable: store.DataTableUsersReducer.data.length,
@@ -38,4 +38,4 @@ const mapStateToProps = (store) => {
   }
 }
 
-export default connect(mapStateToProps)(CheckingSmallDataTable)
+export default connect(mapStoreToProps)(CheckingBigDataTable)

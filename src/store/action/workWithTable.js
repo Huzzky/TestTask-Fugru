@@ -26,4 +26,12 @@ const searchRow = (arrValue) => {
   }
 }
 
-export { sortDataTable, selectRow, searchRow }
+const pageFlip = (action) => {
+  return (dispatch) => {
+    dispatch({
+      type: action,
+    })
+  }
+}
+
+export { sortDataTable, selectRow, searchRow, pageFlip }

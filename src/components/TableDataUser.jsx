@@ -1,21 +1,15 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { tableSortingFields } from '../../const'
-import { sortDataTable } from '../../store/action/workWithTable'
+import { tableSortingFields } from '../const'
+import { sortDataTable } from '../store/action/workWithTable'
 import BlockDescSelectedUser from './BlockDescSelectedUser'
 import { RecordNewUserForDatabase } from './componentRecordNewUser/RecordNewUserForDatabase'
 import RowsOfUsersData from './RowsOfUsersData'
 
-const TableSmallDataUser = ({
-  DataTableUsersReducer,
-  sortDataTable,
-  sortBy,
-}) => {
-  console.log(DataTableUsersReducer)
+const TableDataUser = ({ DataTableUsersReducer, sortDataTable, sortBy }) => {
   const [openBlockDescUserById, setOpenBlockDescUserById] = useState(false)
   const [openBlockInputsNewUser, setOpenBlockInputsNewUser] = useState(false)
-
   useEffect(() => {}, [DataTableUsersReducer, DataTableUsersReducer.data])
 
   const funcSetOpenBlockDescUserById = () => {
@@ -75,7 +69,7 @@ const TableSmallDataUser = ({
   )
 }
 
-TableSmallDataUser.propTypes = {
+TableDataUser.propTypes = {
   smallDataTableUser: PropTypes.shape({
     data: PropTypes.array,
   }),
@@ -95,4 +89,4 @@ const mapDispatchToProps = (dispatch) => ({
   sortDataTable: (key) => dispatch(sortDataTable(key)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableSmallDataUser)
+export default connect(mapStateToProps, mapDispatchToProps)(TableDataUser)

@@ -1,7 +1,7 @@
 import { REQUEST_DATA, SUCCESS_DATA, ERROR_DATA } from '../../const'
 import { fetchData } from '../../apiRequests'
 
-const getDataFromApi = (rows) => {
+const getDataFromApi = (rows, page) => {
   return (dispatch) => {
     dispatch({
       type: REQUEST_DATA,
@@ -11,6 +11,7 @@ const getDataFromApi = (rows) => {
         dispatch({
           type: SUCCESS_DATA,
           data,
+          page: page,
         })
       })
       .catch((_) => {

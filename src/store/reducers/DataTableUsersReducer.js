@@ -7,6 +7,8 @@ import {
   SUCCESS_NEW_USER_IN_TABLE,
   SEND_NEW_USER_IN_TABLE,
   SEARCH_ROW,
+  NEXT_PAGE,
+  PREVIOUS_PAGE,
   tableSortingFields,
 } from '../../const'
 
@@ -17,6 +19,7 @@ const initialState = {
   selectedRow: 0,
   returnedError: false,
   reserveData: [],
+  pageSelect: 0,
 }
 
 const regSearchRow = (enteredString, sdata, reserveData) => {
@@ -88,7 +91,7 @@ const dynamicSort = (field) => {
 
 export default function DataTableUsersReducer(
   state = initialState,
-  { type, data },
+  { type, data, page },
 ) {
   switch (type) {
     case REQUEST_DATA:
@@ -97,12 +100,32 @@ export default function DataTableUsersReducer(
         isFetchingSmallData: true,
       }
     case SUCCESS_DATA:
-      return {
-        ...state,
-        data: data,
-        reserveData: data,
-        isFetchingSmallData: false,
+      if (page > data.length / 50) {
+        return {
+          ...state,
+          data: [
+            {
+              id: 'null',
+              email: 'null',
+              firstName: 'null',
+              lastName: 'null',
+              phone: 'null',
+              address: 'null',
+            },
+          ],
+          isFetchingSmallData: false,
+          returnedError: true,
+        }
+      } else {
+        return {
+          ...state,
+          data: data,
+          reserveData: data,
+          isFetchingSmallData: false,
+          pageSelect: page * 50,
+        }
       }
+
     case ERROR_DATA:
       return {
         ...state,
@@ -118,6 +141,28 @@ export default function DataTableUsersReducer(
         ],
         isFetchingSmallData: false,
         returnedError: true,
+      }
+    case NEXT_PAGE:
+      if (state.pageSelect === state.data.length) {
+        return {
+          ...state,
+        }
+      } else {
+        return {
+          ...state,
+          pageSelect: state.pageSelect + 50,
+        }
+      }
+    case PREVIOUS_PAGE:
+      if (state.pageSelect === 0) {
+        return {
+          ...state,
+        }
+      } else {
+        return {
+          ...state,
+          pageSelect: state.pageSelect - 50,
+        }
       }
     case SEARCH_ROW:
       return {

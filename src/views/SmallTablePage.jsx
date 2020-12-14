@@ -10,7 +10,7 @@ registerObserver()
 
 class SmallTablePage extends Component {
   componentDidMount() {
-    this.props.getSmallDataTableUser(32)
+    this.props.getSmallDataTableUser(32, 1)
   }
 
   render() {
@@ -29,7 +29,7 @@ SmallTablePage.propTypes = {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getSmallDataTableUser: (rows) => dispatch(getDataFromApi(rows)),
+  getSmallDataTableUser: (rows, page) => dispatch(getDataFromApi(rows, page)),
 })
 
 export default connect(null, mapDispatchToProps)(SmallTablePage)

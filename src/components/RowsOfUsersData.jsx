@@ -1,15 +1,23 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectRow } from '../../store/action/workWithTable'
+import { selectRow } from '../store/action/workWithTable'
 
 const component = ({
   RowsOfUsersData,
   setOpenBlockDescUserById,
   selectRow,
+  DataTableUsersReducer,
+  pageSelect,
 }) => {
-  console.log(RowsOfUsersData)
-  return RowsOfUsersData.map((index, key) => {
+  let arrUsers = []
+  if (DataTableUsersReducer.data.length > 49) {
+    arrUsers = RowsOfUsersData.slice(pageSelect, pageSelect + 50)
+  } else {
+    arrUsers = DataTableUsersReducer.data
+  }
+
+  return arrUsers.map((index, key) => {
     return (
       <tr
         onClick={(event) => {
@@ -35,6 +43,8 @@ component.propTypes = {
 
 const mapStateToProps = (store) => ({
   RowsOfUsersData: store.DataTableUsersReducer.data,
+  pageSelect: store.DataTableUsersReducer.pageSelect,
+  DataTableUsersReducer: store.DataTableUsersReducer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

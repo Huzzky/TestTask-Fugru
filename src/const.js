@@ -6,6 +6,8 @@ export const SELECT_ROW = 'SELECT_ROW'
 export const SUCCESS_NEW_USER_IN_TABLE = 'SUCCESS_NEW_USER_IN_TABLE'
 export const SEND_NEW_USER_IN_TABLE = 'SEND_NEW_USER_IN_TABLE'
 export const SEARCH_ROW = 'SEARCH_ROW'
+export const NEXT_PAGE = 'NEXT_PAGE'
+export const PREVIOUS_PAGE = 'PREVIOUS_PAGE'
 
 export const tableSortingFields = {
   id: 'Id',
