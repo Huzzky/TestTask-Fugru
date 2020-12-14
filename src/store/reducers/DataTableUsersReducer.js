@@ -38,11 +38,20 @@ const regSearchRow = (enteredString, sdata, reserveData) => {
               .replace(/\(/g, '')
               .replace(/\)/g, '')
               .replace(/-/g, '')
-            let test = valueString.split('').filter(function (i) {
+            let searchPhone = valueString.split('').filter(function (i) {
               return phoneString.split('').indexOf(i) < 0
             })
 
-            if (test.length === 0) {
+            if (searchPhone.length === 0) {
+              dataSearch.push(valueFilter)
+            }
+          }
+          if (key === 'email') {
+            let searchEmail = valueString.split('').filter(function (i) {
+              return valueFilter[key].split('').indexOf(i) < 0
+            })
+
+            if (searchEmail.length === 0) {
               dataSearch.push(valueFilter)
             }
           }

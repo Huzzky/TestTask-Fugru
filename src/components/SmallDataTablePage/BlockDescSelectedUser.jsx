@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types'
 import React, { memo } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 const component = ({ selectedRow }) => {
   let test = {
-    fullName: 'Выбран пользователь: ',
-    desc: 'Описание: ',
-    streetAddress: 'Адрес проживания: ',
     city: 'Город: ',
-    state: 'Провинция/Штат: ',
     zip: 'Индекс: ',
+    desc: 'Описание: ',
+    state: 'Провинция/Штат: ',
+    fullName: 'Выбран пользователь: ',
+    streetAddress: 'Адрес проживания: ',
   }
 
   let infoSelectedUser = {
@@ -50,14 +50,14 @@ const component = ({ selectedRow }) => {
 component.propTypes = {
   selectedRow: PropTypes.shape({
     address: PropTypes.shape({
+      zip: PropTypes.string,
       city: PropTypes.string,
       state: PropTypes.string,
       streetAddress: PropTypes.string,
-      zip: PropTypes.string,
     }),
-    description: PropTypes.string,
-    firstName: PropTypes.string,
     lastName: PropTypes.string,
+    firstName: PropTypes.string,
+    description: PropTypes.string,
   }),
 }
 

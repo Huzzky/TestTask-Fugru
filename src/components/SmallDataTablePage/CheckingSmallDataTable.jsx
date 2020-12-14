@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
 import TableSmallDataUser from './TableSmallDataUser'
 
 const CheckingSmallDataTable = ({
@@ -24,16 +24,16 @@ const CheckingSmallDataTable = ({
 CheckingSmallDataTable.propTypes = {
   lengthDataTable: PropTypes.number.isRequired,
   smallDataTableUser: PropTypes.shape({
-    isFetchingSmallData: PropTypes.bool,
     data: PropTypes.array,
     returnedError: PropTypes.bool,
+    isFetchingSmallData: PropTypes.bool,
   }),
 }
 
 const mapStateToProps = (store) => {
   return {
-    lengthDataTable: store.DataTableUsersReducer.data.length,
     returnError: store.DataTableUsersReducer.returnedError,
+    lengthDataTable: store.DataTableUsersReducer.data.length,
     isFetchingSmallData: store.DataTableUsersReducer.isFetchingSmallData,
   }
 }
